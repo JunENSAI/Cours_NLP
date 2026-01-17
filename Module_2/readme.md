@@ -63,3 +63,22 @@ Le `Chunking` (ou analyse de surface) est l'étape qui suit immédiatement le Po
 Cela permet d'extraire des "morceaux" de sens plutôt que des mots isolés. C'est essentiel pour comprendre de *quoi* ou de *qui* on parle.
 
 ---
+
+## Analyse de Dépendance (Dependency Parsing)
+
+Alors que le PoS tagging s'intéresse aux mots individuellement, l'analyse de dépendance s'intéresse aux **relations** entre eux. Elle structure la phrase sous forme d'arbre en reliant les mots selon leurs liens grammaticaux (sujet, objet, modificateur).
+
+### Concepts clés
+- **Head (Tête)** : Le mot principal qui régit la relation (ex: le verbe pour un sujet).
+
+- **Child (Enfant)** : Le mot qui dépend de la tête.
+
+- **Label** : Le type de relation (ex: `nsubj` pour sujet nominal, `dobj` pour objet direct).
+
+### Exemple
+Dans la phrase *"Le chat mange"* :
+- "mange" est la **Tête**.
+
+- "chat" est l'**Enfant** avec la relation `nsubj` (sujet).
+
+---
