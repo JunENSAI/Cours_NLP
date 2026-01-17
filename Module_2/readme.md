@@ -6,7 +6,7 @@ Le `PoS` est une tâche fondamentale dans le traitement du langage naturel (NLP)
 
 ### Concepts clés
 
-- `Parts of Speech`: Il s'agit de catégories telles que les noms, les verbes, les adjectifs, les adverbes, etc. qui définissent le rôle d'un mot dans une phrase.
+- `PoS`: Il s'agit de catégories telles que les noms, les verbes, les adjectifs, les adverbes, etc. qui définissent le rôle d'un mot dans une phrase.
 
 - `Tagging` : processus consistant à attribuer une étiquette de partie du discours spécifique à chaque mot d'une phrase.
 
@@ -80,5 +80,25 @@ Dans la phrase *"Le chat mange"* :
 - "mange" est la **Tête**.
 
 - "chat" est l'**Enfant** avec la relation `nsubj` (sujet).
+
+---
+
+## Reconnaissance d'Entités Nommées (NER)
+
+La NER (Named Entity Recognition) est une sous-tâche de l'extraction d'information qui vise à localiser et classer des entités nommées dans un texte en catégories prédéfinies.
+
+### Catégories courantes
+- **PERSON** : Noms de personnes.
+
+- **ORG** : Entreprises, agences, institutions.
+
+- **GPE** : Pays, villes, états (entités géopolitiques).
+
+- **DATE / TIME** : Dates et heures.
+
+- **MONEY** : Valeurs monétaires.
+
+### Utilité
+C'est crucial pour l'analyse de documents juridiques, le résumé automatique d'actualités, ou l'extraction de données structurées à partir de texte non structuré.
 
 ---
