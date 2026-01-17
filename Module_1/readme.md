@@ -34,24 +34,23 @@
 
 3. Tokenization des phrases
 
-La tokenization est aussi une technique commune utilisée pour faire une division de paragraphe ou un large ensemble de phrases en phrases separées comme tokens. Ceci est utile pour les tâches qui recquiert une analyse de phrases individuelles ou de pre-traitement.
+    La tokenization est aussi une technique commune utilisée pour faire une division de paragraphe ou un large ensemble de phrases en phrases separées comme tokens. Ceci est utile pour les tâches qui recquiert une analyse de phrases individuelles ou de pre-traitement.
 
-```plaintext
-Entrée avant tokenization: ["I am you. You are not me"]
+    ```plaintext
+    Entrée avant tokenization: ["I am you. You are not me"]
 
-Sortie après tokenization: ["I am you.", "You are not me"]
-
-```
+    Sortie après tokenization: ["I am you.", "You are not me"]
+    ```
 
 4. Tokenization N-gram
 
-La tokenization N-gram sépare les mots en une taille fixée (`size = n`) de donnée.
+    La tokenization N-gram sépare les mots en une taille fixée (`size = n`) de donnée.
 
-```plaintext
-Entrée avant tokenization: ["Natural Language Processing is fun"]
+    ```plaintext
+    Entrée avant tokenization: ["Natural Language Processing is fun"]
 
-Output when tokenized by bigrams: [('Natural', 'Language'), ('Language', 'Processing'), ('Processing', 'is'), ('is', 'fun')]
-```
+    Sortie après bigrams: [('Natural', 'Language'), ('Language', 'Processing'), ('Processing', 'is'), ('is', 'fun')]
+    ```
 
 ### Utilisation de la Tokenization
 
@@ -66,7 +65,10 @@ La tokenisation est une étape essentielle du traitement de texte et du traiteme
 - Analyse de texte : utilisée dans l'analyse des sentiments et la reconnaissance d'entités nommées, pour déterminer la fonction et le contexte de chaque mot dans une phrase.
 
 - Gestion du vocabulaire : génère une liste de jetons distincts, aide à gérer le vocabulaire d'un corpus.
-Adaptation à des tâches spécifiques : s'adapte aux besoins d'une tâche particulière de NLP, utile pour la synthèse et la traduction automatique.
+
+- Adaptation à des tâches spécifiques : s'adapte aux besoins d'une tâche particulière de NLP, utile pour la synthèse et la traduction automatique.
+
+---
 
 ## Lemmatization et Stemming
 
@@ -160,8 +162,54 @@ En bref, le stemming effectue une troncature mécanique des mots.
 
 - **Systèmes de correspondance de mots-clés** : le stemming permet une correspondance approximative des mots-clés dans les systèmes NLP basés sur des règles ou légers.
 
+---
 
+## Stop Words
 
+Les tâches de NLP impliquent souvent de filtrer les mots courants qui n'apportent aucune ou très peu de valeur sémantique à l'analyse du texte. Ces mots, appelés mots vides, comprennent les articles, les prépositions et les pronoms tels que « le », « et », « est » et « dans ». Bien qu'ils semblent insignifiants, un traitement approprié des mots vides peut avoir un impact considérable sur les performances et la précision des applications de NLP.
 
+Prenons l'exemple de la phrase suivante : "Your key does not open the door"
+```plaintext
+Stopwords: "the", "your", "does", "not" 
+
+Mots filtrés: "key", "open", "door"
+```
+Cela devient particulièrement important lorsqu'il s'agit de grands corpus de texte où l'efficacité informatique est primordiale. Le traitement de chaque mot, y compris les mots vides à haute fréquence, peut consommer des ressources inutiles et potentiellement fausser les résultats de l'analyse.
+
+### Quand dois t-on enlever les stopwords
+
+**Tâches qui bénéficient de la suppression des mots vides :**
+
+- Classification de texte et analyse des sentiments
+
+- Récupération d'informations et moteurs de recherche
+
+- Modélisation de sujets et regroupement
+
+- Extraction de mots-clés
+
+**Tâches qui nécessitent la conservation des mots vides :**
+
+- Traduction automatique (conserve la structure grammaticale)
+
+- Résumé de texte (conserve la cohérence des phrases)
+
+- Systèmes de questions-réponses (les relations syntaxiques sont importantes)
+
+- Vérification grammaticale et analyse syntaxique
+
+La modélisation linguistique présente un compromis intéressant où la décision dépend des exigences spécifiques de l'application et des ressources informatiques disponibles.
+
+### Catégories
+
+- `Stopwords standard` : mots fonctionnels courants tels que les articles (« a », « the »), les conjonctions (« and », « but ») et les prépositions (« in », « on »)
+
+- `Stopwords spécifiques à un domaine` : termes dépendants du contexte qui apparaissent fréquemment dans des domaines spécifiques, comme « patient » dans les textes médicaux
+
+- `Stopwords contextuels` : mots extrêmement fréquents dans certains ensembles de données
+
+- `Stopwords numériques` : chiffres, signes de ponctuation et caractères uniques
+
+---
 
 
