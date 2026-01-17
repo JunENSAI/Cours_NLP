@@ -1,0 +1,1 @@
+# Représentation Vectorielle (Vectorisation & Embeddings)
