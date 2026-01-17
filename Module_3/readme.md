@@ -42,3 +42,52 @@ Le modèle Bag of Words (Sac de mots) est la technique de vectorisation la plus 
     * **Fléau de la dimensionnalité :** De très grands vocabulaires rendent l'apprentissage difficile pour les modèles statistiques.
 
 ---
+
+## 2. TF-IDF (Term Frequency - Inverse Document Frequency)
+
+Le TF-IDF est une technique statistique qui convertit le texte en vecteurs, mais contrairement au Bag of Words, elle **pondère** l'importance des mots. Elle ne dit pas "combien de fois ce mot apparaît", mais "à quel point ce mot est **unique et important** pour ce document spécifique".
+
+### Concepts Clés
+
+1. L'intuition (Le problème du "LE" et du "DE")
+
+    Dans le modèle Bag of Words, les mots les plus fréquents (comme "le", "est", "de") ont les plus grosses valeurs. Pourtant, ils portent très peu de sens.
+
+    * **TF-IDF résout cela** : Il écrase le score des mots omniprésents et booste le score des mots rares.
+
+2. TF (Term Frequency) - "Importance Locale"
+
+    Mesure la fréquence d'un mot dans **un seul document**.
+
+    * *Formule simplifiée :* 
+    $$\text{TF}(t, d) = \frac{\text{Nombre d'occurrences du terme } t}{\text{Nombre total de mots dans le document } d}$$
+
+    * Plus le mot apparaît dans le document, plus le score monte.
+
+3. IDF (Inverse Document Frequency) - "Importance Globale"
+
+    C'est le filtre de rareté. Il regarde l'ensemble du **corpus**.
+    * *Formule :* $$\text{IDF}(t) = \log(\frac{N}{\text{df}(t)})$$
+        * $N$ : Nombre total de documents.
+
+        * $\text{df}(t)$ : Nombre de documents contenant le terme $t$.
+
+    * **Mécanique clé :**
+        * Si un mot est présent dans **tous** les documents (ex: "le"), $\log(1) = 0$. Le score s'annule.
+
+        * Si un mot est très **rare** (ex: "hypoténuse"), le dénominateur est petit, le log est grand -> Le score explose.
+
+4. Le Score Final
+    $$w_{i,j} = \text{TF}_{i,j} \times \text{IDF}_i$$
+    Un score élevé est atteint uniquement si le mot est **fréquent dans ce document précis** MAIS **rare ailleurs**.
+
+5. Cas d'usage idéal
+
+    Le TF-IDF est excellent pour :
+
+    * **Moteurs de recherche** : Trouver le document le plus pertinent pour une requête spécifique.
+
+    * **Extraction de mots-clés** : Identifier les mots qui résument un texte.
+
+---
+
