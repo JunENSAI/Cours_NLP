@@ -1,3 +1,5 @@
 spacy
 nltk
 gensim
+scikit-learn
+pandas
