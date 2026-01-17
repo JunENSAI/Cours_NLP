@@ -68,3 +68,100 @@ La tokenisation est une étape essentielle du traitement de texte et du traiteme
 - Gestion du vocabulaire : génère une liste de jetons distincts, aide à gérer le vocabulaire d'un corpus.
 Adaptation à des tâches spécifiques : s'adapte aux besoins d'une tâche particulière de NLP, utile pour la synthèse et la traduction automatique.
 
+## Lemmatization et Stemming
+
+### Lemmatization
+
+La lemmatisation est une technique de normalisation de texte basée sur la linguistique qui convertit les mots en leur forme de base dans le dictionnaire, appelée lemme, en tenant compte de la grammaire, du vocabulaire et du contexte.
+
+- Prend en compte la catégorie grammaticale (POS) du mot identifié
+
+- Le mot est comparé à une base de données lexicale
+
+- Des règles grammaticales sont appliquées
+
+- Les formes fléchies sont mises en correspondance avec leur lemme de base
+
+- Un mot valide du dictionnaire est renvoyé
+
+- Prise en compte du contexte et précision
+
+- Plus coûteux en termes de calcul
+
+
+**Techniques utilisées**
+
+- Recherche dans le dictionnaire : met en correspondance les mots avec des formes de base valides
+
+- Marquage POS : détermine le rôle grammatical
+
+- Analyse morphologique : gère la flexion et la dérivation
+
+`Example`
+
+| Original Word| Lemma    | POS      |
+|:-------------| :-------:| --------:|
+| running     | run   | Verb    |
+| better     | good   | Adjective    |
+| studies     | study   | Noun    |
+| was     | be   | Verb    |
+
+`Application`
+
+- **Analyse des sentiments** : la lemmatisation préserve le sens des mots, ce qui permet une classification plus précise des sentiments.
+
+- **Résumé de texte** : elle aide à identifier les concepts clés en réduisant les mots à leurs formes de base significatives.
+
+- **Chatbots et IA conversationnelle** : elle garantit une compréhension correcte de l'intention de l'utilisateur en préservant l'intégrité sémantique.
+
+- **Systèmes de réponse aux questions** : elle améliore la correspondance entre les questions et les réponses en utilisant des mots de base valides.
+
+- **Modélisation de sujets** : elle produit des sujets cohérents en regroupant correctement les mots sémantiquement liés.
+
+### Stemming
+
+Le stemming est une technique de normalisation de texte basée sur des règles qui réduit les mots à leur forme racine en supprimant les préfixes ou les suffixes. La forme résultante, appelée radical, peut ne pas être un mot valide ou significatif dans la langue.
+
+- Chaque mot est traité indépendamment, sans tenir compte du contexte.
+
+- L'algorithme recherche les suffixes ou préfixes courants.
+
+- Des règles prédéfinies sont appliquées pour supprimer ces affixes.
+
+- La partie restante du mot est renvoyée comme radical.
+
+En bref, le stemming effectue une troncature mécanique des mots.
+
+**Techniques utilisées**
+
+- Suppression des suffixes : supprime les terminaisons courantes telles que `-ing, -ed, -es`.
+
+- Troncature basée sur des règles : applique des règles linguistiques fixes.
+
+- Réduction agressive : raccourcit les mots pour une généralisation maximale.
+
+`Exemple`
+
+| Original Word| Stem   | 
+|:-------------| -------:|
+| running     | run   |
+| smiling    | smile   |
+| studies     | studi   |
+
+`Application`
+
+- **Moteurs de recherche** : le stemming améliore la correspondance des requêtes en traitant les différentes formes morphologiques d'un mot comme un seul et même terme, ce qui augmente le taux de rappel dans les résultats de recherche.
+
+- **Systèmes de recherche d'informations** : il aide à retrouver des documents pertinents même lorsque les termes de la requête et ceux du document diffèrent sur le plan grammatical.
+
+- **Indexation de documents** : il réduit le nombre de termes uniques stockés dans les index, améliorant ainsi l'efficacité du stockage et la vitesse de recherche.
+
+- **Classification de textes** : il simplifie la représentation des caractéristiques en regroupant les formes de mots apparentées sous une seule racine.
+
+- **Systèmes de correspondance de mots-clés** : le stemming permet une correspondance approximative des mots-clés dans les systèmes NLP basés sur des règles ou légers.
+
+
+
+
+
+
