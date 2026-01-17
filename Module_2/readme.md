@@ -2,7 +2,7 @@
 
 ## Tag PoS (Part of Speech)
 
-Le PoS est une tâche fondamentale dans le traitement du langage naturel (NLP), où chaque mot d'une phrase se voit attribuer une catégorie grammaticale telle que nom, verbe, adjectif ou adverbe. Ce processus aide les machines à comprendre la structure et le sens des phrases en identifiant les rôles des mots et leurs relations.
+Le `PoS` est une tâche fondamentale dans le traitement du langage naturel (NLP), où chaque mot d'une phrase se voit attribuer une catégorie grammaticale telle que nom, verbe, adjectif ou adverbe. Ce processus aide les machines à comprendre la structure et le sens des phrases en identifiant les rôles des mots et leurs relations.
 
 ### Concepts clés
 
@@ -47,3 +47,19 @@ Voici les différentes étapes du POS :
 
 ---
 
+## Chunking (Groupement de mots)
+
+Le `Chunking` (ou analyse de surface) est l'étape qui suit immédiatement le PoS Tagging. Une fois que l'on sait qu'un mot est un nom ou un adjectif, le chunking permet de regrouper ces mots en **syntagmes** (groupes de mots) significatifs, comme des groupes nominaux ou verbaux.
+
+### Concepts clés
+
+- **Noun Phrase (NP)** : Groupe nominal. Par exemple, dans "Le petit chat", l'ensemble forme un NP.
+
+- **Grammaire de Chunking** : Règles (souvent basées sur des expressions régulières) définissant comment les étiquettes PoS doivent être regroupées.
+
+- **Arbre syntaxique (Tree)** : Résultat du chunking, montrant la hiérarchie des groupes.
+
+### Utilité
+Cela permet d'extraire des "morceaux" de sens plutôt que des mots isolés. C'est essentiel pour comprendre de *quoi* ou de *qui* on parle.
+
+---
