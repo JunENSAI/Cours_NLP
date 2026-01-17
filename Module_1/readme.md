@@ -212,4 +212,31 @@ La modélisation linguistique présente un compromis intéressant où la décisi
 
 ---
 
+## Normalisation de texte
+
+Comment normaliser des données textuelles avec Python ?
+
+- Les données textuelles désignent des informations collectées de manière systématique, composées de mots écrits, imprimés ou publiés électroniquement, généralement rédigés à dessein ou transcrits à partir d'un discours.
+
+- La normalisation de texte est la méthode qui consiste à transformer un texte en une forme canonique qu'il n'avait pas auparavant. La normalisation du texte avant son stockage ou son traitement permet de séparer les préoccupations, car l'entrée est assurée d'être cohérente avant que les opérations ne soient effectuées. La normalisation de texte nécessite d'être conscient du type de texte à normaliser et de la manière dont il sera traité par la suite ; il n'existe pas de procédure de normalisation universelle.
+
+### Étapes requises
+
+Voici les étapes fondamentales nécessaires à la normalisation du texte.
+
+- Saisir la chaîne de texte,
+
+- Convertir toutes les lettres de la chaîne en une seule casse (minuscules ou majuscules),
+
+- Si les chiffres doivent impérativement être convertis en mots, sinon supprimer tous les chiffres,
+
+- Supprimer les signes de ponctuation et autres formalités grammaticales,
+
+- Supprimer les espaces vides (`" "`),
+
+- Supprimer les mots vides,
+
+- Et tout autre calcul.
+
+---
 

@@ -27,7 +27,6 @@ print("Filtered with spacy:", filtered_words)
 
 from gensim.parsing.preprocessing import remove_stopwords
 
-
 new_text = "Your key does not open the door"
 
 new_filtered_text = remove_stopwords(new_text)
