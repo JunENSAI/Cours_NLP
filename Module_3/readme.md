@@ -154,3 +154,43 @@ Les paramètres de la fonction Word2Vec :
 * `workers` : nombre de threads CPU pour l'entraînement parallèle. Utilise 4 coeurs de processeur simultanément
 
 ---
+
+# 4. Similarité Cosinus (Cosine Similarity)
+
+Maintenant que nous avons transformé nos textes en vecteurs (via BoW, TF-IDF ou Embeddings), comment savoir si deux textes parlent de la même chose ?
+On ne mesure pas la distance "physique" (Euclidienne) entre les points, mais **l'angle** entre les vecteurs.
+
+### Concepts Clés
+
+1. **Pourquoi pas la distance Euclidienne ?**
+
+    La distance euclidienne est une mesure qui indique à quel point deux points sont éloignés dans un espace. C’est la longueur du segment droit qui relie deux points.
+
+    * **Problème :** Si le Document A parle de "Science" (100 mots) et le Document B parle de "Science" (1000 mots), leurs vecteurs pointeront dans la même direction, mais le vecteur B sera beaucoup plus long (magnitude plus grande). La distance Euclidienne dira qu'ils sont très éloignés.
+
+    * **Solution Cosinus :** La similarité cosinus regarde l'angle. Si les deux pointent dans la même direction, l'angle est nul, ils sont considérés identiques, peu importe la longueur du texte.
+
+2. **Intuition**
+
+    Imaginez deux flèches partant de l'origine (0,0).
+
+    * **0° (Angle nul)** : Les flèches sont superposées. $\cos(0) = 1$. Similarité maximale (Textes identiques).
+
+    * **90° (Angle droit)** : Les flèches sont perpendiculaires. $\cos(90) = 0$. Aucune corrélation (Les textes n'ont rien en commun).
+
+    * **180° (Opposé)** : Les flèches sont opposées. $\cos(180) = -1$. Sens opposé (Rare en BoW/TF-IDF car les fréquences ne sont pas négatives, mais possible avec Word2Vec).
+
+3. **Formule**
+
+    C'est le produit scalaire des vecteurs divisé par le produit de leurs normes (longueurs).
+
+    $$\text{similarity}(A, B) = \frac{A \cdot B}{||A|| \times ||B||} = \frac{\sum A_i B_i}{\sqrt{\sum A_i^2} \times \sqrt{\sum B_i^2}}$$
+
+4. **Applications**
+    * **Moteur de recherche** : "Query" utilisateur vs "Documents" de la base. On trie par score Cosinus décroissant.
+
+    * **Système de recommandation** : "Si tu as lu l'article A, voici l'article B qui a le score Cosinus le plus proche."
+
+    * **Détection de plagiat** : Comparer le devoir d'un étudiant avec une base de données.
+
+---
