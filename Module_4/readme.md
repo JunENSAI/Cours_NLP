@@ -44,3 +44,47 @@ Naive Bayes est un algorithme probabiliste basé sur le théorème de Bayes. Il 
     * **BernoulliNB** : Il ne regarde que la présence binaire (0 ou 1). Le mot est là ou pas ? Utile pour des textes très courts.
 
 ---
+
+## 2. Régression Logistique
+
+Ne vous fiez pas à son nom : la Régression Logistique est bien un algorithme de **Classification** (et non de régression). C'est le modèle linéaire de référence en industrie pour le NLP avant l'arrivée du Deep Learning.
+
+### Concepts Clés
+
+1. Discriminatif vs Génératif
+
+    * **Naive Bayes (Génératif)** : Il essaie de modéliser à quoi *ressemble* un document "Sport" et à quoi *ressemble* un document "Cinéma".
+
+    * **Régression Logistique (Discriminatif)** : Il ne s'intéresse pas à la structure du texte. Il cherche uniquement la **frontière** (une ligne ou un hyperplan) qui sépare le mieux les deux classes.
+
+2. La Fonction Sigmoïde
+
+    Le coeur de l'algorithme.
+
+    * Un modèle linéaire classique produit un score qui peut aller de $-\infty$ à $+\infty$.
+
+    * Pour faire de la classification, nous devons écraser ce score entre **0 et 1** (pour avoir une probabilité).
+
+    * C'est le rôle de la **Sigmoïde** (courbe en S).
+
+    $$P(y=1|x) = \frac{1}{1 + e^{-(wx + b)}}$$
+
+3. Les Poids (Weights) = Explicabilité
+
+    C'est le plus grand avantage de ce modèle. Il attribue un coefficient (poids) à chaque mot du vocabulaire.
+
+    * **Poids Positif élevé** : Le mot vote fortement pour la Classe 1 (ex: "Football" pour la classe Sport).
+
+    * **Poids Négatif élevé** : Le mot vote fortement pour la Classe 0 (ex: "Acteur" pour la classe Sport, car il indique plutôt le Cinéma).
+
+    * **Poids proche de 0** : Le mot est inutile (ex: "le", "de", "aujourd'hui").
+
+4. Régularisation (L1/L2)
+
+    Les textes contiennent des milliers de mots (haute dimension). Le modèle risque d'apprendre par cœur le bruit (Overfitting).
+
+    * La régression logistique applique une pénalité (Régularisation) pour forcer les poids des mots inutiles à rester petits, ce qui rend le modèle plus robuste sur des nouveaux textes.
+
+---
+
+
