@@ -87,4 +87,114 @@ Ne vous fiez pas à son nom : la Régression Logistique est bien un algorithme d
 
 ---
 
+## 3. Analyse de Sentiment (Opinion Mining)
 
+L'analyse de sentiment consiste à déterminer l'attitude émotionnelle d'un auteur vis-à-vis d'un sujet. Le but est généralement de classer le texte selon une **Polarité** : Positif, Négatif ou Neutre.
+
+### Concepts Clés
+
+1. Approche Lexicale (Rule-based / Lexicon)
+
+    C'est la méthode "sans apprentissage". On utilise un dictionnaire pré-défini de mots avec des scores.
+
+    * *Exemple :* "Excellent" (+2.0), "Bon" (+1.0), "Horrible" (-2.0).
+
+    * On additionne les scores des mots de la phrase.
+
+    * **Avantage :** Pas besoin de données d'entraînement (Dataset). Rapide.
+
+    * **Inconvénient :** Ne comprend pas le contexte complexe.
+
+2. Approche Machine Learning (Supervised)
+
+    C'est la méthode vue dans les parties précédentes (Naive Bayes, RegLog).
+
+    * On donne au modèle 10 000 critiques de films étiquetées (Positif/Négatif).
+
+    * Il apprend quels mots (et combinaisons de mots) prédisent le sentiment.
+
+    * **Avantage :** Plus précis sur des domaines spécifiques.
+
+3. Défis Majeurs
+
+    L'analyse de sentiment échoue souvent à cause de nuances linguistiques :
+
+    * **La Négation :** "Ce film n'est **pas** mauvais." (Les mots sont négatifs, mais le sens est positif).
+
+    * **L'Ironie / Sarcasme :** "Super, mon téléphone est encore cassé !" (Le mot "Super" est positif, mais le sens est négatif).
+
+    * **L'Ambiguïté :** "Le film est imprévisible." (Positif pour un thriller, Négatif pour une comédie romantique).
+
+4. Subjectivité vs Polarité
+
+    Certains outils distinguent deux métriques :
+
+    * **Polarité :** De -1 (Négatif) à +1 (Positif).
+
+    * **Subjectivité :** De 0 (Fait objectif) à 1 (Opinion personnelle).
+
+    * *Exemple :* "La table est rouge" (Neutre, Objectif). "J'aime cette table rouge" (Positif, Subjectif).
+
+### Datasets Standards
+
+Pour entraîner un modèle d'analyse de sentiment, on utilise des corpus annotés (où un humain a déjà dit "Ceci est positif").
+
+* **IMDb Movie Reviews** : Le standard académique. 25 000 critiques positives, 25 000 négatives. Vocabulaire très riche et argotique.
+
+* **Amazon Product Reviews** : Plus orienté "objet" et "utilité".
+
+* **Twitter Sentiment140** : Très court, beaucoup d'abréviations, d'emojis et de fautes.
+
+### Le défi du "Domain Shift"
+
+* Un modèle entraîné sur des **critiques de films** (ex: "Le scénario est lent" = Négatif) fonctionnera très mal sur des **critiques de restaurants** (ex: "Le service est lent" = Négatif, mais "On a mangé lentement" = Positif ?).
+
+* Le vocabulaire du sentiment change selon le contexte. On ne peut pas aveuglément appliquer un modèle IMDb sur des données bancaires.
+
+---
+
+## 4. Métriques d'Évaluation
+
+Une fois le modèle entraîné, il faut mesurer sa performance. La métrique "Accuracy" (Précision globale) est souvent trompeuse, surtout si les données sont déséquilibrées (ex: 90% de classes Positives et 10% de Négatives).
+
+## Concepts Clés
+
+1. `La Matrice de Confusion`
+
+    C'est le tableau de bord fondamental qui compare les **Prédictions** du modèle avec la **Vérité Terrain** (Réalité).
+
+    Il y a 4 cas possibles :
+
+    * **Vrais Positifs (TP)** : Le modèle a prédit "Positif" et c'était Vrai.
+
+    * **Vrais Négatifs (TN)** : Le modèle a prédit "Négatif" et c'était Vrai.
+
+    * **Faux Positifs (FP)** : Le modèle a prédit "Positif" mais c'était Faux (Erreur de Type I - "Fausse Alerte").
+
+    * **Faux Négatifs (FN)** : Le modèle a prédit "Négatif" mais c'était Positif (Erreur de Type II - "Raté").
+
+2. `Précision` (Precision) - "La Qualité"
+
+    *Question :* "Quand mon modèle affirme que c'est Positif, a-t-il raison ?"
+
+    * *Formule :* $TP / (TP + FP)$
+
+    * *Utilité :* Crucial pour un filtre anti-spam (on ne veut surtout pas mettre un mail important dans les spams -> on veut 0 Faux Positifs).
+
+3. `Rappel` (Recall) - "La Quantité"
+
+    *Question :* "Sur tous les cas qui étaient réellement Positifs, combien mon modèle en a-t-il trouvé ?"
+
+    * *Formule :* $TP / (TP + FN)$
+
+    * *Utilité :* Crucial pour la médecine (détection de cancer). On préfère avoir une fausse alerte (FP) plutôt que de rater un malade (FN).
+
+4. `F1-Score`
+
+    C'est la moyenne harmonique entre la Précision et le Rappel.
+
+    * Il punit les scores extrêmes. Si vous avez une très bonne Précision mais un Rappel nul, le F1-Score sera mauvais.
+
+    * C'est la métrique reine pour comparer deux modèles.
+
+---
