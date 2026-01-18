@@ -91,3 +91,66 @@ Le TF-IDF est une technique statistique qui convertit le texte en vecteurs, mais
 
 ---
 
+## 3. Word Embeddings & Word2Vec
+
+Jusqu'à présent (BoW, TF-IDF), les mots étaient des cases isolées dans un tableau. "Roi" et "Reine" n'avaient aucun lien mathématique.
+Les **Word Embeddings** (Plongements de mots) résolvent cela en transformant chaque mot en un **vecteur dense** de coordonnées dans un espace géométrique.
+
+### Concepts Clés
+
+1. Dense vs Sparse (Creux vs Dense)
+    * **Avant (BoW)** : Vecteurs "Creux" (Sparse). Taille = 20,000 (vocabulaire). Rempli de zéros. Pas de sens.
+
+    * **Maintenant (Embeddings)** : Vecteurs "Denses". Taille fixe et réduite (ex: 100 ou 300 dimensions). Rempli de nombres décimaux (ex: `[0.24, -0.45, 0.11...]`). Chaque chiffre représente une caractéristique abstraite du sens.
+
+2. Sémantique Géométrique (Proximité = Sens)
+
+    Dans cet espace vectoriel, la distance entre deux points représente leur similarité sémantique.
+    * Si deux vecteurs sont proches géométriquement, les mots ont un sens similaire (ex: *Voiture* sera collé à *Camion*).
+
+    * Le modèle apprend cela tout seul en regardant le **contexte** (les mots voisins).
+
+3. Arithmétique des mots (Analogies)
+
+    C'est une propriété sympa de Word2Vec. On peut faire des maths avec le sens :
+
+    * $\text{Vecteur(Roi)} - \text{Vecteur(Homme)} + \text{Vecteur(Femme)} \approx \text{Vecteur(Reine)}$
+
+    * $\text{Vecteur(Paris)} - \text{Vecteur(France)} + \text{Vecteur(Italie)} \approx \text{Vecteur(Rome)}$
+
+4. Les Architectures (Comment ça apprend ?)
+
+    Il existe deux méthodes principales pour entraîner Word2Vec (créé par Google en 2013) :
+    * **CBOW (Continuous Bag of Words)** : Le modèle essaie de deviner le **mot caché au milieu** à partir des mots qui l'entourent.
+        * *Entrée :* "Le", "chat", "___", "la", "souris". -> *Cible :* "mange".
+
+    * **Skip-Gram** : L'inverse. À partir d'un mot central, il essaie de deviner les **mots alentours**.
+
+        * *Entrée :* "mange". -> *Cible :* "chat", "souris".
+        
+        * *Note :* Skip-Gram est souvent meilleur pour les petits corpus et les mots rares.
+
+5. OOV (Out of Vocabulary)
+
+    La limite majeure de Word2Vec : si un mot n'était pas dans l'entraînement (ex: un néologisme ou une faute de frappe), le modèle ne peut pas le vectoriser.
+
+### Implementation
+
+```python
+from gensim.models import Word2Vec
+
+model = Word2Vec(sentences=tokenized_corpus, vector_size=50, window=10, min_count=1, workers=4)
+```
+Les paramètres de la fonction Word2Vec :
+
+* `sentences` : resultante d'un tokenization par mots ou par phrases selon le contexte
+
+* `vector_size` : définit la dimensionnalité des vecteurs de mots. Chaque mot sera représenté par un vecteur de 50 nombres.
+
+* `windows` :  taille de la fenêtre de contexte. Le modèle considère 10 mots avant et 10 mots après chaque mot cible.
+
+* `min_count` : seuil de fréquence minimum. Ignore les mots qui apparaissent moins de 1 fois.
+
+* `workers` : nombre de threads CPU pour l'entraînement parallèle. Utilise 4 coeurs de processeur simultanément
+
+---
