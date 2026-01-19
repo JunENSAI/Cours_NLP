@@ -4,15 +4,15 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
 from tensorflow.keras.datasets import imdb
-from tensorflow.keras.preprocessing import sequence
+from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 (input_train, y_train), (input_test, y_test) = imdb.load_data(num_words=10000)
 print(f"Train samples: {len(input_train)}")
 print(f"Exemple d'avis (sous forme d'index): {input_train[0][:10]}...")
 
 maxlen = 100
-input_train = sequence.pad_sequences(input_train, maxlen=maxlen)
-input_test = sequence.pad_sequences(input_test, maxlen=maxlen)
+input_train = pad_sequences(input_train, maxlen=maxlen)
+input_test = pad_sequences(input_test, maxlen=maxlen)
 print(f"Shape des données d'entrée : {input_train.shape}")
 
 class IMDbDataset(Dataset):
